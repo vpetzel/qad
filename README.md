@@ -1,12 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# qad <a><img src='man/figures/hex.png' align="right" height="139" /></a>
+# qad <a><img src='man/figures/hex.png' align="right" height="150" /></a>
 
 <!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/qad)](https://cran.r-project.org/package=qad)
+[![](https://cranlogs.r-pkg.org/badges/qad)](https://cran.r-project.org/package=qad)
+
 <!-- badges: end -->
 
 ------------------------------------------------------------------------

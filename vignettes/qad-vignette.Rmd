@@ -266,7 +266,7 @@ p6
 
 ## Install qad
 
-The R-package <a href="https://cran.r-project.org/web/packages/qad/index.html">qad</a> is (freely) available on CRAN. You can download and install the current version of qad from [CRAN](https://CRAN.R-project.org) via:
+The R-package <a href="https://CRAN.R-project.org/package=qad">qad</a> is (freely) available on CRAN. You can download and install the current version of qad from [CRAN](https://CRAN.R-project.org) via:
 
 ```{r eval = F, echo = T}
 install.packages("qad")
