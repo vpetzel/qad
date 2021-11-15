@@ -1,7 +1,7 @@
 Package: qad
 Type: Package
 Title: Quantification of Asymmetric Dependence
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
     c(person(given = "Florian", 
              family = "Griessenberger", 
