@@ -1,28 +1,21 @@
 init_dependencies <- function () {
   missing_dependencies <- c()
-  if (!requireNamespace("ggplot2", quietly=TRUE))
+  if (!require("ggplot2", quietly=TRUE))
     missing_dependencies <- c("ggplot2", missing_dependencies)
-  if (!requireNamespace("viridis", quietly=TRUE))
+  if (!require("viridis", quietly=TRUE))
     missing_dependencies <- c("viridis", missing_dependencies)
-  if (!requireNamespace("cowplot", quietly=TRUE))
+  if (!require("cowplot", quietly=TRUE))
     missing_dependencies <- c("cowplot", missing_dependencies)
-  if (!requireNamespace("grDevices", quietly=TRUE))
+  if (!require("grDevices", quietly=TRUE))
     missing_dependencies <- c("grDevices", missing_dependencies)
-  if (!requireNamespace("ggExtra", quietly=TRUE))
+  if (!require("ggExtra", quietly=TRUE))
     missing_dependencies <- c("ggExtra", missing_dependencies)
-  if (!requireNamespace("dplyr", quietly=TRUE))
+  if (!require("dplyr", quietly=TRUE))
     missing_dependencies <- c("dplyr", missing_dependencies)
 
   if (length(missing_dependencies) > 0) {
     stop(paste("Plotting requires additional packages: ", paste(missing_dependencies, collapse=", ")))
   }
-
-  attachNamespace("ggplot2")
-  attachNamespace("viridis")
-  attachNamespace("cowplot")
-  attachNamespace("grDevices")
-  attachNamespace("ggExtra")
-  attachNamespace("dplyr")
 }
 
 
