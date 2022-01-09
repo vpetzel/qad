@@ -44,10 +44,10 @@ D1 <- function(x1,y1,x2,y2, resolution = NULL){
     resolution <- resolution
   }
 
-  .X1 <- rank(x1, ties.method="max")
-  .Y1 <- rank(y1, ties.method="max")
-  .X2 <- rank(x2, ties.method="max")
-  .Y2 <- rank(y2, ties.method="max")
+  .X1 <- qad_rank(x1)
+  .Y1 <- qad_rank(y1)
+  .X2 <- qad_rank(x2)
+  .Y2 <- qad_rank(y2)
   A1 <- round(build_checkerboard_weights(.X1, .Y1, resolution),15)
   A2 <- round(build_checkerboard_weights(.X2, .Y2, resolution),15)
 
@@ -109,8 +109,8 @@ zeta1 <- function(X,Y, resolution = NULL){
     sample_size <- min(length(unique(X)), length(unique(Y)))
     resolution <- floor(sample_size ^ (1/2))    #s \in [0,1/2)
   }
-  .X <- rank(X, ties.method="max")
-  .Y <- rank(Y, ties.method="max")
+  .X <- qad_rank(X)
+  .Y <- qad_rank(Y)
   A <- build_checkerboard_weights(.X, .Y, resolution)
   return(3*D1_Pi(A, resolution))
 }

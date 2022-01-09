@@ -126,17 +126,17 @@ plot.qad <- function(x,
           Mdf$x2 <- as.numeric(Mdf$x2)
           Mdf <- Mdf[!is.na(Mdf$value),]
           p <- p + geom_raster(data = Mdf, aes_(x=~x1/m - 1/m/2,y=~x2/m - 1/m/2, fill = ~value), alpha = 0.35, fill = "grey20", na.rm = T)
-          p <- p + geom_point(data=qad_output$data, aes(x=rank(x1, ties.method = 'max')/sample_size,
-                                                        y=rank(x2, ties.method = 'max')/sample_size), size=point.size)
+          p <- p + geom_point(data=qad_output$data, aes(x=qad_rank(x1)/sample_size,
+                                                        y=qad_rank(x2)/sample_size), size=point.size)
         }else{
-          p <- p + geom_point(data=qad_output$data, aes(x=rank(x1, ties.method = 'max')/sample_size,
-                                                        y=rank(x2, ties.method = 'max')/sample_size), size=point.size)
+          p <- p + geom_point(data=qad_output$data, aes(x=qad_rank(x1)/sample_size,
+                                                        y=qad_rank(x2)/sample_size), size=point.size)
         }
 
       }
       if(margins){
-        p <- p + geom_rug(data=qad_output$data, aes(x=rank(x1, ties.method = 'max')/sample_size,
-                                                    y=rank(x2, ties.method = 'max')/sample_size))
+        p <- p + geom_rug(data=qad_output$data, aes(x=qad_rank(x1)/sample_size,
+                                                    y=qad_rank(x2)/sample_size))
       }
       if(!panel.grid){
         p <- p + theme(panel.grid.minor = element_line(colour = NA),

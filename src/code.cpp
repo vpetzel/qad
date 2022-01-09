@@ -1,6 +1,11 @@
 #include <Rcpp.h>
 #include <cmath>
 #include <cstdio>
+
+#include <boost/sort/spreadsort/spreadsort.hpp>
+
+// [[Rcpp::depends(BH)]]
+
 using namespace Rcpp;
 
 namespace std
@@ -145,4 +150,51 @@ double D1_Pi(const NumericMatrix& A, R_xlen_t resolution) {
     }
 
     return result/resolution;
+}
+
+//' @export
+// [[Rcpp::export]]
+IntegerVector qad_rank(const NumericVector& x) {
+    R_xlen_t n = x.length();
+    // Create an array of pairs (value, position)
+    std::pair<double, R_xlen_t> *sortdata = new std::pair<double, R_xlen_t> [n];
+    for (R_xlen_t i = 0; i < n; i++) {
+        sortdata[i].first = x[i];
+        sortdata[i].second = i;
+    }
+
+    // Sort the array by value
+    boost::sort::spreadsort::float_sort(sortdata, sortdata + n,
+        [](const std::pair<double, R_xlen_t> &a, const unsigned offset) -> boost::int64_t {
+            return boost::sort::spreadsort::float_mem_cast<double, boost::int64_t>(a.first) >> offset;
+        },
+        [](const std::pair<double, R_xlen_t> &a, const std::pair<double, R_xlen_t> &b) -> bool {
+            return a.first < b.first;
+        });
+
+    IntegerVector result(n);
+
+    // As sortdata is sorted by value the position of (x, orig) is the rank of x
+    // disregarding ties.
+    double last_x = 0;
+    R_xlen_t current_ties = 0; // How many times did we have the last x?
+    for (R_xlen_t i = 0; i < n; i++) {
+        if (sortdata[i].first == last_x) // Keep counting
+            current_ties++;
+        else {
+            for (R_xlen_t j = 0; j < current_ties; j++)
+                result[sortdata[i-1-j].second] = i; // max here, could also do min and avg
+            last_x = x[sortdata[i].second];
+            current_ties = 1;
+        }
+    }
+
+    // The last streak should not be written yet, so we need to do it here
+    if (current_ties > 0)
+        for (R_xlen_t j = 0; j < current_ties; j++)
+            result[sortdata[n-1-j].second] = n;
+
+    delete [] sortdata;
+
+    return result;
 }

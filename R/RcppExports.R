@@ -16,3 +16,8 @@ D1_Pi <- function(A, resolution) {
     .Call(`_qad_D1_Pi`, A, resolution)
 }
 
+#' @export
+qad_rank <- function(x) {
+    .Call(`_qad_qad_rank`, x)
+}
+

@@ -69,8 +69,8 @@ ECBC <- function(X,Y, resolution = NULL){
   }else{
     resolution <- resolution
   }
-  X <- rank(X, ties.method = "max")
-  Y <- rank(Y, ties.method = "max")
+  X <- qad_rank(X)
+  Y <- qad_rank(Y)
   sample_size = length(X)
   result = matrix(0, nrow=resolution, ncol=resolution)
   x_range = .r_range(X)

@@ -114,8 +114,8 @@ qad.data.frame <- function(x, resolution = NULL,
     resolution <- floor(resolution)
   }
 
-  .X <- rank(x, ties.method="max")
-  .Y <- rank(y, ties.method="max")
+  .X <- qad_rank(x)
+  .Y <- qad_rank(y)
   mass_matrix <- round(build_checkerboard_weights(.X, .Y, resolution),15) #Round to avoid computer errors
 
   #Influence of x on y
@@ -161,8 +161,8 @@ qad.data.frame <- function(x, resolution = NULL,
       x1Perm <- samplePerm[1:n]
       x2Perm <- samplePerm[(n+1):(2*n)]
 
-      .x1 <- rank(x1Perm, ties.method="max")
-      .x2 <- rank(x2Perm, ties.method="max")
+      .x1 <- qad_rank(x1Perm)
+      .x2 <- qad_rank(x2Perm)
       mass_matrix <- build_checkerboard_weights(.x1, .x2, resolution)
 
       #Influence of x on y
@@ -194,8 +194,8 @@ qad.data.frame <- function(x, resolution = NULL,
       u_new <- runif(n, 0, 1/N) + (ru_new-1)/N
       v_new <- runif(n, 0, 1/N) + (rv_new-1)/N
 
-      .x1 <- rank(u_new, ties.method="max")
-      .x2 <- rank(v_new, ties.method="max")
+      .x1 <- qad_rank(u_new)
+      .x2 <- qad_rank(v_new)
       mass_matrix <- build_checkerboard_weights(.x1, .x2, resolution)
 
       #Influence of x on y

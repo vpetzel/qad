@@ -50,11 +50,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// qad_rank
+NumericVector qad_rank(const NumericVector& x);
+RcppExport SEXP _qad_qad_rank(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(qad_rank(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_qad_build_checkerboard_weights", (DL_FUNC) &_qad_build_checkerboard_weights, 3},
     {"_qad_local_kernel_integral", (DL_FUNC) &_qad_local_kernel_integral, 5},
     {"_qad_D1_Pi", (DL_FUNC) &_qad_D1_Pi, 2},
+    {"_qad_qad_rank", (DL_FUNC) &_qad_qad_rank, 1},
     {NULL, NULL, 0}
 };
 
