@@ -26,13 +26,7 @@ LazyData: true
 Depends: 
     R (>= 2.10)
 Imports: 
-    ggplot2, 
     data.table, 
-    copula, 
-    viridis, 
-    ggExtra, 
-    dplyr, 
-    cowplot, 
     Rcpp (>= 1.0.6)
 RoxygenNote: 7.1.2
 LinkingTo: Rcpp
@@ -40,6 +34,11 @@ Suggests:
     rmarkdown,
     reshape2,
     knitr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    ggplot2,
+    viridis,
+    ggExtra,
+    dplyr,
+    cowplot
 Config/testthat/edition: 3
 VignetteBuilder: knitr

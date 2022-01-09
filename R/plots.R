@@ -57,6 +57,24 @@ plot.qad <- function(x,
                      panel.grid = TRUE,
                      color = "plasma",
                      rb_values = c(10, 0.315, 0.15), ...){
+  missing_dependencies <- c()
+  if (!requireNamespace("ggplot2", quietly=TRUE))
+    missing_dependencies <- c("ggplot2", missing_dependencies)
+  if (!requireNamespace("viridis", quietly=TRUE))
+    missing_dependencies <- c("viridis", missing_dependencies)
+  if (!requireNamespace("cowplot", quietly=TRUE))
+    missing_dependencies <- c("cowplot", missing_dependencies)
+  if (!requireNamespace("grDevices", quietly=TRUE))
+    missing_dependencies <- c("grDevices", missing_dependencies)
+  if (!requireNamespace("ggExtra", quietly=TRUE))
+    missing_dependencies <- c("ggExtra", missing_dependencies)
+  if (!requireNamespace("dplyr", quietly=TRUE))
+    missing_dependencies <- c("dplyr", missing_dependencies)
+
+  if (length(missing_dependencies) > 0) {
+    stop(paste("Plotting requires additional packages: ", paste(missing_dependencies, collapse=", ")))
+  }
+  
   qad_output <- x
   if(class(qad_output)=='qad'){
     #Mass matrix of the copula
@@ -193,6 +211,24 @@ plot.qad <- function(x,
 
 plot_density <- function(mass_matrix, density=TRUE, color = "plasma", rb_values = c(10, 0.315, 0.15)){
   #input: matrix with mass distribution
+  missing_dependencies <- c()
+  if (!requireNamespace("ggplot2", quietly=TRUE))
+    missing_dependencies <- c("ggplot2", missing_dependencies)
+  if (!requireNamespace("viridis", quietly=TRUE))
+    missing_dependencies <- c("viridis", missing_dependencies)
+  if (!requireNamespace("cowplot", quietly=TRUE))
+    missing_dependencies <- c("cowplot", missing_dependencies)
+  if (!requireNamespace("grDevices", quietly=TRUE))
+    missing_dependencies <- c("grDevices", missing_dependencies)
+  if (!requireNamespace("ggExtra", quietly=TRUE))
+    missing_dependencies <- c("ggExtra", missing_dependencies)
+  if (!requireNamespace("dplyr", quietly=TRUE))
+    missing_dependencies <- c("dplyr", missing_dependencies)
+
+  if (length(missing_dependencies) > 0) {
+    stop(paste("Plotting requires additional packages: ", paste(missing_dependencies, collapse=", ")))
+  }
+
   if(density){
     mass_matrix <- mass_matrix*NROW(mass_matrix)*NCOL(mass_matrix)
   }
@@ -262,6 +298,23 @@ heatmap.qad <- function(pw_qad, select = c('dependence','max.dependence','asymme
                         sign.level = 0.05, scale = "abs", color = "plasma",
                         rb_values = c(10, 0.315, 0.15),
                         title = ""){
+  missing_dependencies <- c()
+  if (!requireNamespace("ggplot2", quietly=TRUE))
+    missing_dependencies <- c("ggplot2", missing_dependencies)
+  if (!requireNamespace("viridis", quietly=TRUE))
+    missing_dependencies <- c("viridis", missing_dependencies)
+  if (!requireNamespace("cowplot", quietly=TRUE))
+    missing_dependencies <- c("cowplot", missing_dependencies)
+  if (!requireNamespace("grDevices", quietly=TRUE))
+    missing_dependencies <- c("grDevices", missing_dependencies)
+  if (!requireNamespace("ggExtra", quietly=TRUE))
+    missing_dependencies <- c("ggExtra", missing_dependencies)
+  if (!requireNamespace("dplyr", quietly=TRUE))
+    missing_dependencies <- c("dplyr", missing_dependencies)
+
+  if (length(missing_dependencies) > 0) {
+    stop(paste("Plotting requires additional packages: ", paste(missing_dependencies, collapse=", ")))
+  }
 
   prepare_data_long <- function(matr, matr.p, n_round = 3){
     df_matr <- as.data.frame(as.table(round(as.matrix(matr), n_round)))
